@@ -1,12 +1,17 @@
 import Image from 'next/image';
 
-export async function generateStaticParams() {
-  const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`);
-  const res = await data.json();
-  return res.results.map((movie) => ({
-    movie: toString(movie.id),
-  }));
-}
+type MovieParams = {
+  id: any;
+};
+
+//export async function generateStaticParams() {
+//  const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`);
+//  const res = await data.json();
+//
+//  return res.results.map((movie: MovieParams) => ({
+//    movie: toString(movie.id),
+//  }));
+//}
 
 export default async function MovieDetail({ params }: { params: any }) {
   const { movie } = params;
